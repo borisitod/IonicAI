@@ -7,6 +7,28 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-fab bottom right>
+    <button ion-fab color="danger">
+      <ion-icon name="mic"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list no-lines class="chat-list">
+    <ion-item *ngFor="let message of messages" class="chat-item">
+      <ion-avatar item-left *ngIf="message.sender == 'api'">
+        <img src="assets/apiai.png" alt="">
+      </ion-avatar>
+      <ion-avatar item-right *ngIf="message.sender == 'me'">
+        <img src="assets/ionic.png" alt="">
+      </ion-avatar>
+      <div *ngIf="message.sender == 'api'" class="bubble me">
+        <h3> {{ message.text }}</h3>
+      </div>
+      <div *ngIf="message.sender == 'me'" class="bubble you">
+        <h3> {{ message.text }}</h3>
+      </div>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 
