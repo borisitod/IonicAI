@@ -27,8 +27,7 @@ export class MyApp {
             lang: "en" // set lang tag from list of supported languages
         },
         function(result) {
-          alert(result)
-
+         console.log('ok')
         },
         function(error) { alert(error) }
     );
