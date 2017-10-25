@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 declare var window;
@@ -11,7 +11,7 @@ export class HomePage {
 
   messages: any[] = [];
   text: string = "";
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private ngZone: NgZone) {
       this.messages.push({
           text: 'Hi, how can I help you',
           sender: 'api'
@@ -32,9 +32,12 @@ export class HomePage {
       window['ApiAIPlugin'].requestText({
           query: message
       }, (response)=>{
-          this.messages.push({
-              text: response.result.fullfilment.speech,
-              sender: "api"
+
+          this.ngZone.run(()=> {
+              this.messages.push({
+                  text: response.result.fulfillment.speech,
+                  sender: "api"
+              })
           })
       }, (error)=>{
           alert(JSON.stringify(error))
