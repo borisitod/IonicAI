@@ -14,7 +14,7 @@
   </ion-fab>
 
   <ion-list no-lines class="chat-list">
-    <ion-item *ngFor="let message of messages" class="chat-item">
+    <ion-item *ngFor="let message of messages" class="chat-item" text-wrap>
       <ion-avatar item-left *ngIf="message.sender == 'api'">
         <img src="assets/apiai.png" alt="">
       </ion-avatar>
@@ -35,8 +35,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-item>
-      <ion-input type="text" placeholder="Your message here.." [(ngModel)]="text"></ion-input>
-      <button ion-button icon-only item-right clear (click)="sendText()">
+      <ion-input #input type="text" placeholder="Your message here.." [(ngModel)]="text"></ion-input>
+      <button ion-button icon-only item-right clear (click)="sendText(); input.setFocus()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-item>
